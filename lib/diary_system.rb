@@ -1,11 +1,9 @@
 def make_snippet(str)
-  str_array = str.split
-  if str_array.size <= 5
-    return str_array.join(" ")
+  words = str.split
+  if words.size <= 5
+    return str
   else
-    snippet_array = []
-    5.times { |i| snippet_array.push(str_array[i]) }
-    snippet = snippet_array.join(" ")
+    snippet = words[0, 5].join(" ")
     snippet += "..."
   end
 end

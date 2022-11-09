@@ -1,6 +1,11 @@
 require 'diary_system'
 
 RSpec.describe "make_snippet method" do
+  it "returns an empty string if given an empty string" do
+    result = make_snippet("")
+    expect(result).to eq ""
+  end
+
   it "takes a string and returns it in full if <= 5 words long" do
     result = make_snippet("One two three")
     expect(result).to eq "One two three"
