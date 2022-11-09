@@ -21,3 +21,20 @@ RSpec.describe "make_snippet method" do
     expect(result).to eq "Testing one two three four..."
   end
 end
+
+RSpec.describe "count_words method" do
+  it "returns 0 if given an empty string" do
+    result = count_words("")
+    expect(result).to eq 0
+  end
+
+  it "returns 1 if given a one-word string" do
+    result = count_words("One")
+    expect(result).to eq 1
+  end
+
+  it "returns 5 if given a five-word string" do
+    result = count_words("One two three four five")
+    expect(result).to eq 5
+  end
+end
