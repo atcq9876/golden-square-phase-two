@@ -24,6 +24,7 @@ class DiaryEntry
                         # user can read per minute
     # Returns an integer representing an estimate of the reading time in minutes
     # for the contents at the given wpm.
+    fail "Please enter valid wpm." if wpm == 0
     (@contents.split.length.to_f / wpm).ceil
   end
 
