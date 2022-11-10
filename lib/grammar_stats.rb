@@ -1,5 +1,6 @@
 class GrammarStats
   def initialize
+    # set counters for check method to 0
     @good = 0
     @bad = 0
   end
@@ -24,5 +25,10 @@ class GrammarStats
   def percentage_good
     # Returns as an integer the percentage of texts checked so far that passed
     # the check defined in the `check` method. The number 55 represents 55%.
+    if @good == 0 && @bad == 0
+      fail "No checks carried out."
+    else
+      100* (@good.to_f / (@good + @bad))
+    end
   end
 end
