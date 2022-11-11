@@ -2,7 +2,7 @@ class DiaryEntry
   def initialize(title, contents) # title, contents are strings
     @title = title
     @contents = contents
-    @chunks_read = 0
+    @words_read = 0
   end
 
   def title
@@ -39,12 +39,12 @@ class DiaryEntry
     # The next call after that it should restart from the beginning.
     contents_array = @contents.split
     words_to_read = wpm * minutes
-    words_already_read = @chunks_read * (wpm * minutes)
-    @chunks_read += 1
-    if (contents_array.length.to_f / words_already_read) > 1
-      contents_array[words_already_read, words_to_read].join(' ')
+    starting_point = @words_read
+    @words_read += words_to_read
+    if (contents_array.length.to_f / starting_point) > 1
+      contents_array[(starting_point), words_to_read].join(' ')
     else
-      @chunks_read = 0
+      @words_read = 0
       contents_array[0, words_to_read].join(' ')
     end
   end
