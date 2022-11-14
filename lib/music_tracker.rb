@@ -5,7 +5,9 @@ class MusicTracker
   end
 
   def add_song(song, artist)
-    if song.length == 0 || artist.length == 0
+    if (!song.is_a? String) || (!artist.is_a? String)
+      fail "Please enter a song and whose song this is"
+    elsif song.length == 0 || artist.length == 0
       fail "Please enter a song and whose song this is"
     else
       @list_of_songs.push("#{song} by #{artist}")
@@ -88,9 +90,6 @@ song_list.add_song("Song 2", "Band 2") => "Song list: Song 1 by Band 1, Song 2 b
 Encode each example as a test. You can add to the above list as you go.
 
 
-
 4. Implement the Behaviour
 After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour.
-
-
 =end

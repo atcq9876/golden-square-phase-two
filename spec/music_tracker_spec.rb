@@ -9,12 +9,12 @@ describe MusicTracker do
       end
     end
 
-    # context "when non-string values are entered" do
-      # it "fails" do
-        # song_list = MusicTracker.new
-        # expect { song_list.add_song(5, nil) }.to raise_error "Please enter a song and whose song this is"
-      # end
-    # end
+    context "when non-string values are entered" do
+      it "fails" do
+        song_list = MusicTracker.new
+        expect { song_list.add_song(5, nil) }.to raise_error "Please enter a song and whose song this is"
+      end
+    end
 
     context "when valid string arguments are entered" do
       it "adds song to list and returns a success message" do
