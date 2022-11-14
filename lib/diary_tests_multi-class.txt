@@ -1,0 +1,76 @@
+List of integration tests (ALL DONE)
+
+# 1 (done)
+Diary: all (& add()): adds instance(s) of DiaryEntry, returns all entries
+(unit: - test with no entries)
+- test with one entry
+- test with two entries
+
+# 2 (done)
+Diary: count_words (& add()): adds instance(s) of DiaryEntry, returns no of words
+(unit: - test with no entries)
+- test with one entry
+- test with two entries
+
+# 3 (done)
+Diary: reading_time() (& add(), count_words): adds instance(s) of DE...
+...counts words from all entries, returns reading time
+(unit: - test with no entries)
+- test with one entry
+- test with two entries
+- wpm <= 0
+
+# 4 (done)
+Diary: find_best_entry_for_reading_time() (& add(), count_words, reading_time): ...
+adds instance(s) of DE, counts words, uses reading_time, returns best entry
+(unit: - test with no entries)
+- test with two entries (neither short enough to read)
+- test with two entries (at least one short enough to read)
+
+
+List of unit tests for diary
+
+# 1
+all: 
+no entry
+
+# 2
+count_words:
+no entry
+
+# 3
+reading_time:
+no entry
+
+# 4
+find_best_entry_for_reading_time:
+no entries
+
+
+
+
+
+
+
+
+List of unit tests for diary_entry (ALL DONE)
+
+# 1 (done)
+title
+(see original spec file)
+
+# 2 (done)
+contents
+(see original spec file)
+
+# 3 (done)
+count_words
+(see original spec file)
+
+# 4 (done)
+reading_time
+(see original spec file)
+
+# 5 (done)
+reading_chunk
+(see original spec file)
