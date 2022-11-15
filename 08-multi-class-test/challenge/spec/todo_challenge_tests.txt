@@ -2,14 +2,12 @@ Integration tests
 
 # 1
 TodoList #add(todo): adds an instance of TodoList
-(- no todos)
 - one todo
 (- two todos)?
 
 # 2
 TodoList #incomplete: uses instance(s) of Todo which are added using #add(todo)...
 ... and possibly Todo's #mark_done!
-(- no todos)
 - one non-done todo
 - one done todo
 - one done and one non-done todo
@@ -17,7 +15,6 @@ TodoList #incomplete: uses instance(s) of Todo which are added using #add(todo).
 # 3
 TodoList #complete: uses instance(s) of Todo which are added using #add(todo)...
 ... and possibly Todo's #mark_done!
-(- no todos)
 - one non-done todo
 - one done todo
 - one done and one non-done todo
@@ -25,7 +22,6 @@ TodoList #complete: uses instance(s) of Todo which are added using #add(todo)...
 # 4
 TodoList #give_up! (and Todo's #mark_done! and Todo's #done?): uses instance(s) of Todo which are added using #add(todo)...
 ... and possibly uses Todo's #done? to check tasks and #mark_done! on all incomplete todos
-(- no todos)
 - one non-done todo
 - one done todo
 - one non-done and one done todo
