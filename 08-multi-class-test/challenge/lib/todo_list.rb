@@ -6,6 +6,7 @@ class TodoList
 
   def add(todo) # todo is an instance of Todo
     # Returns nothing
+    raise "Please create a todo before adding it to your list." if todo == nil
     @list << todo
   end
 
@@ -17,12 +18,14 @@ class TodoList
 
   def complete
     # Returns all complete todos
+    raise "No completed todos" if (@list.empty? && @complete.empty?)
     update_list
     @complete.empty? ? (raise "No completed todos") : @complete
   end
 
   def give_up!
     # Marks all todos as complete
+    raise "No todos to give up on!" if (@list.empty? && @complete.empty?)
     update_list
     if @list.empty?
       raise "All todos already done!"
@@ -40,13 +43,3 @@ def update_list
     end
   end
 end
-
-=begin
-write a method for updating todo list and complete list:
-@list.each do |todo|
-  if todo.done? == true
-    @complete << todo
-    @list.delete(todo)
-  end
-end
-=end

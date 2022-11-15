@@ -1,4 +1,4 @@
-Integration tests
+Integration tests (ALL DONE)
 
 # 1 (DONE)
 TodoList #add(todo): adds an instance of Todo
@@ -30,41 +30,41 @@ TodoList #give_up! (and Todo's #mark_done! and Todo's #done?): uses instance(s) 
 
 
 
-todo_list unit tests
+todo_list unit tests (ALL DONE)
 
-# 1
+# 1 (DONE)
 #add(todo)
 - no todos
 
-# 2
+# 2 (DONE)
 #incomplete
 - no todos
 
-# 3
+# 3 (DONE)
 #complete
 - no todos
 
-# 4
+# 4 (DONE)
 #give_up!
 - no todos
 
 
 
 
-todo unit tests
+todo unit tests (ALL DONE)
 
-# 1
+# 1 (DONE)
 #task
 - non-string value
 - empty string
 - valid string
 
 # 2
-#mark_done!
-- no todo??
-- one todo??
+#mark_done! (DONE)
+- one non-done todo
+- one done todo
 
-# 3
+# 3 (DONE)
 #done?
-- no todo??
-- one todo??
+- one done todo
+- one non-done todo
