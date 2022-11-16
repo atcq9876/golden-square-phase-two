@@ -33,8 +33,8 @@ I want to keep a todo list along with my diary
 As a user
 So that I can keep track of my contacts
 I want to see a list of all of the mobile phone numbers in all my diary entries
-    # ContactsList class?
-    # ToDo / ToDoList class searches for mobile phone numbers in diary entries and adds these to a contacts_list in ContactList class?
+    # (ContactsList class?)
+    # Diary/DiaryEntry class searches for mobile phone numbers in diary entries and adds these to a contacts_list in Diary/DiaryEntry/ContactList class?
 
 
 
@@ -42,15 +42,37 @@ I want to see a list of all of the mobile phone numbers in all my diary entries
 - Consider diagramming out the classes and their relationships. (Can use websites like asciiflow.com, excalidraw.com, draw.io, or miro.com for this)
 - Also design the interface of each class in more detail.
 
+Look at previous programs for relevant classes and methods:
+- Keep (and update) relevant ones
+- Discard others
+- Write any new ones that are needed
+    - Contacts, etc.
+
+Contacts can be included in its own class or within Diary/DiaryEntry
+
 
 
 3. Create Examples as Integration Tests
 - Create examples of the classes being used together in different situations and combinations that reflect the ways in which the system will be used.
 
+Look at relevant previous programs for tests:
+- Keep (and update) relevant ones
+- Discard others
+- Write any new ones that are needed
+    - Contacts, etc.
+
+
 
 4. Create Examples as Unit Tests
 - Create examples, where appropriate, of the behaviour of each relevant class at a more granular level of detail.
 - Encode each example as a test. You can add to the list as you go.
+
+Look at relevant previous programs for tests:
+- Keep (and update) relevant ones
+- Discard others
+- Write any new ones that are needed
+    - Contacts, etc.
+
 
 
 5. Implement the Behaviour
