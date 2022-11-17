@@ -43,7 +43,7 @@ I want to see a list of all of the mobile phone numbers in all my diary entries
 - Also design the interface of each class in more detail.
 
 
-Class Diary
+class Diary
   def initialize # create empty diary array
     ...
   end
@@ -69,16 +69,22 @@ Class Diary
 end
 
 
-Class DiaryEntry
+class DiaryEntry
   def initialize(title, contents) # takes strings, creates a diary entry
     ...
   end
+
+  # def title   # returns title
+  # end
+
+  # def contents    # returns contents
+  # end
 
   # maybe: word_count method
 end
 
 
-ToDoList
+class ToDoList
   def initialize # creates empty array for todo list
     ...
   end
@@ -97,7 +103,7 @@ ToDoList
 end
 
 
-ToDo
+class ToDo
   def initialize(task) # creates a todo (takes string)
     ...
   end
@@ -158,7 +164,7 @@ Diary (and DiaryEntry)
     diary = Diary.new
     diary.add(entry_1)
     diary.add(entry_2)
-    diary.read_best_entry(2, 1) => raise "You don't have enough time to read an entry"
+    diary.read_best_entry(2, 1) => raise_error "You don't have enough time to read an entry"
 
 
 TodoList (and Todo)
@@ -272,7 +278,7 @@ Diary
 
   #read_best_entry (with no entries)
     diary = Diary.new
-    diary.read_best_entry => raise_error "No entries have been added yet!"
+    diary.read_best_entry(2, 1) => raise_error "No entries have been added yet!"
 
   #find_phone_numbers (with no entries)
     diary = Diary.new
@@ -282,10 +288,19 @@ Diary
 DiaryEntry
   #initialize
     # 1 (empty string arguments)
-      entry = diaryEntry.new("", "") => [raise "not a valid entry"]
+      entry = DiaryEntry.new("", "") => [raise "not a valid entry"]
 
     # 2 (non-string arguments)
-      entry = diaryEntry.new(4, nil) => [raise "not a valid entry"]
+      entry = DiaryEntry.new(4, nil) => [raise "not a valid entry"]
+
+  #title
+    entry = DiaryEntry.new("Title", "One two three")
+    entry.title => "Title"
+
+  #contents
+    entry = DiaryEntry.new("Title", "One two three")
+    entry.contents => "One two three"
+
 
 
 TodoList
