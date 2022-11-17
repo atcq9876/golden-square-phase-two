@@ -28,5 +28,14 @@ class Diary
 
   def find_phone_numbers # finds all phone numbers in diary and stores them in an array
     raise "No entries have been added yet!" if @diary.empty?
+    array_of_numbers = []
+    @diary.each do |entry|
+      entry.contents.split.each do |word|
+        if (word.length == 11) && (word[0] == "0") && (word[1] == "7")
+          array_of_numbers << word
+        end
+      end
+    end
+    array_of_numbers
   end
 end
