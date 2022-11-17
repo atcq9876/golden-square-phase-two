@@ -33,8 +33,8 @@ I want to keep a todo list along with my diary
 As a user
 So that I can keep track of my contacts
 I want to see a list of all of the mobile phone numbers in all my diary entries
-    # (ContactsList class?)
-    # Diary/DiaryEntry class searches for mobile phone numbers in diary entries and adds these to a contacts_list in Diary/DiaryEntry/ContactList class?
+    # PhoneNumbers class
+    # Diary/DiaryEntry class searches for mobile phone numbers in diary entries and adds these to a contacts_list in PhoneNumbers class?
 
 
 
@@ -42,62 +42,222 @@ I want to see a list of all of the mobile phone numbers in all my diary entries
 - Consider diagramming out the classes and their relationships. (Can use websites like asciiflow.com, excalidraw.com, draw.io, or miro.com for this)
 - Also design the interface of each class in more detail.
 
+
 Class Diary
-  def initialize
+  def initialize # create empty diary array
+    ...
   end
 
-  def add(entry)
+  def add(entry) # adds instance of DiaryEntry to diary
+    ...
   end
 
-  def read_all
+  def read_all # returns all diary entries
+    ...
   end
 
-  def read_best_entry(wpm, minutes)
-    # use word_count??
+  def read_best_entry(wpm, minutes) # returns longest entry user can read given wpm and minutes
+    ...
+    # use word_count method??
+  end
+
+  # maybe: word_count method
+
+  def find_phone_numbers() # finds all phone numbers in diary and stores them in an array
+    ...
+  end
+end
+
+
+Class DiaryEntry
+  def initialize(title, contents) # takes strings, creates a diary entry
+    ...
   end
 
   # maybe: word_count method
 end
 
-Class DiaryEntry
-  def initialize(title, contents)
+
+ToDoList
+  def initialize # creates empty array for todo list
+    ...
+  end
+
+  def add(task) # adds instance of DiaryEntry to todo list
+    ...
+  end
+
+  def incomplete # returns all incomplete todos
+    ...
+  end
+
+  def complete # returns all complete todos
+    ...
   end
 end
 
 
-Contacts can be included in its own class or within Diary/DiaryEntry
+ToDo
+  def initialize(task) # creates a todo (takes string)
+    ...
+  end
+
+  def mark_done! # marks a todo as completed
+    ...
+  end
+end
+
+
+class PhoneNumbers
+  def initialize # creates empty array of phone numbers
+    @phone_numbers = []
+  end
+
+  def add_numbers(array_of_numbers) # takes an array of phone numbers found in diary
+    # loop through given array and only add new numbers to @phone_numbers array
+  end
+
+  def see_numbers # returns all phone_numbers
+    @phone_numbers 
+  end
+end
 
 
 
 3. Create Examples as Integration Tests
 - Create examples of the classes being used together in different situations and combinations that reflect the ways in which the system will be used.
 
-#read_all
-entry_1 = DiaryEntry.new("Title 1", "One")
-entry_2 = DiaryEntry.new("Title 2", "Two")
-diary = Diary.new
-diary.add(entry_1)
-diary.add(entry_2)
-diary.read_all => ["One", "Two"]
+Diary (and DiaryEntry)
+  #read_all (and #add)
+    # 1 one entry
+    entry_1 = DiaryEntry.new("Title 1", "One")
+    diary = Diary.new
+    diary.add(entry_1)
+    diary.read_all => [entry_1]
 
-#read_best_entry
-# 1 (two entries, one short enough)
-entry_1 = DiaryEntry.new("Title 1", "One two three four five")
-entry_2 = DiaryEntry.new("Title 2", "Six seven eight")
-diary = Diary.new
-diary.add(entry_1)
-diary.add(entry_2)
-diary.read_best_entry(3, 1) => "Six seven eight"
+    # 2 two entries
+    entry_1 = DiaryEntry.new("Title 1", "One")
+    entry_2 = DiaryEntry.new("Title 2", "Two")
+    diary = Diary.new
+    diary.add(entry_1)
+    diary.add(entry_2)
+    diary.read_all => [entry_1, entry_2]
 
-#read_best_entry
-# 2 (two entries, both too long)
-entry_1 = DiaryEntry.new("Title 1", "One two three four five")
-entry_2 = DiaryEntry.new("Title 2", "Six seven eight")
-diary = Diary.new
-diary.add(entry_1)
-diary.add(entry_2)
-diary.read_best_entry(2, 1) => raise "You don't have enough time to read an entry"
+  #read_best_entry (and #add(entry))
+    # 1 (two entries, one short enough)
+    entry_1 = DiaryEntry.new("Title 1", "One two three four five")
+    entry_2 = DiaryEntry.new("Title 2", "Six seven eight")
+    diary = Diary.new
+    diary.add(entry_1)
+    diary.add(entry_2)
+    diary.read_best_entry(3, 1) => "Six seven eight"
 
+    # 2 (two entries, both too long)
+    entry_1 = DiaryEntry.new("Title 1", "One two three four five")
+    entry_2 = DiaryEntry.new("Title 2", "Six seven eight")
+    diary = Diary.new
+    diary.add(entry_1)
+    diary.add(entry_2)
+    diary.read_best_entry(2, 1) => raise "You don't have enough time to read an entry"
+
+
+TodoList (and Todo)
+  #incomplete (and #add(task) and #mark_done!)
+    # 1 (two incomplete tasks)
+    todo_1 = Todo.new("Buy groceries")
+    todo_2 = Todo.new("Clean car")
+    todo_list = TodoList.new
+    todo_list.add(todo_1)
+    todo_list.add(todo_2)
+    todo.incomplete => [todo_1, todo_2]
+
+    # 2 (one incomplete and one complete task)
+    todo_1 = Todo.new("Buy groceries")
+    todo_2 = Todo.new("Clean car")
+    todo_list = TodoList.new
+    todo_list.add(todo_1)
+    todo_list.add(todo_2)
+    todo_1.mark_done!
+    todo.incomplete => [todo_2]
+
+    # 3 (two complete tasks)
+    todo_1 = Todo.new("Buy groceries")
+    todo_2 = Todo.new("Clean car")
+    todo_list = TodoList.new
+    todo_list.add(todo_1)
+    todo_list.add(todo_2)
+    todo_1.mark_done!
+    todo_2.mark_done!
+    todo.incomplete => raise_error "No todos to complete!"
+
+  #complete (and #add(task) and #mark_done!)
+    # 1 (two complete tasks)
+    todo_1 = Todo.new("Buy groceries")
+    todo_2 = Todo.new("Clean car")
+    todo_list = TodoList.new
+    todo_list.add(todo_1)
+    todo_list.add(todo_2)
+    todo_1.mark_done!
+    todo_2.mark_done!
+    todo.complete => [todo_1, todo_2]
+
+    # 2 (one incomplete and one complete task)
+    todo_1 = Todo.new("Buy groceries")
+    todo_2 = Todo.new("Clean car")
+    todo_list = TodoList.new
+    todo_list.add(todo_1)
+    todo_list.add(todo_2)
+    todo_1.mark_done!
+    todo.complete => [todo_2]
+
+    # 3 (two incomplete tasks)
+    todo_1 = Todo.new("Buy groceries")
+    todo_2 = Todo.new("Clean car")
+    todo_list = TodoList.new
+    todo_list.add(todo_1)
+    todo_list.add(todo_2)
+    todo.complete => raise_error "No complete todos!"
+
+
+PhoneNumbers
+  #see_numbers and add_numbers(array_of_numbers) (and all DiaryEntry and Diary methods leading up to that)
+    # 1 (add array of numbers for the first time)
+      entry_1 = DiaryEntry.new("Title 1", "One 07777888999 two")
+      entry_2 = DiaryEntry.new("Title 2", "Three 07888999000 four")
+      diary = Diary.new
+      diary.add(entry_1)
+      diary.add(entry_2)
+      diary.find_phone_numbers
+      numbers_list = PhoneNumbers.new
+      numbers_list.add(array_of_numbers)
+      numbers_list.see_numbers => ["07777888999", "07888999000"]
+
+    # 2 (add same array of numbers for the second time - no new numbers added and error message raised)
+      entry_1 = DiaryEntry.new("Title 1", "One 07777888999 two")
+      entry_2 = DiaryEntry.new("Title 2", "Three 07888999000 four")
+      diary = Diary.new
+      diary.add(entry_1)
+      diary.add(entry_2)
+      diary.find_phone_numbers
+      numbers_list = PhoneNumbers.new
+      numbers_list.add(array_of_numbers)
+      numbers_list.add(array_of_numbers) => raise_error "No new numbers added, all are already on your list"
+      numbers_list.see_numbers => ["07777888999", "07888999000"]
+
+    # 3 (add array, then add array again after one more number has been added to array)
+      entry_1 = DiaryEntry.new("Title 1", "One 07777888999 two")
+      entry_2 = DiaryEntry.new("Title 2", "Three 07888999000 four")
+      diary = Diary.new
+      diary.add(entry_1)
+      diary.add(entry_2)
+      diary.find_phone_numbers
+      numbers_list = PhoneNumbers.new
+      numbers_list.add(array_of_numbers)
+      entry_3 = DiaryEntry.new("Title 3", "Five six 07123444555")
+      diary.add(entry_3)
+      diary.find_phone_numbers
+      numbers_list.add(array_of_numbers)
+      numbers_list.see_numbers => ["07777888999", "07888999000", "07123444555"]
 
 
 
@@ -105,20 +265,58 @@ diary.read_best_entry(2, 1) => raise "You don't have enough time to read an entr
 - Create examples, where appropriate, of the behaviour of each relevant class at a more granular level of detail.
 - Encode each example as a test. You can add to the list as you go.
 
-DiaryEntry
-entry = diaryEntry.new("", "") => [raise "not a valid entry"]
-entry = diaryEntry.new(4, nil) => [raise "not a valid entry"]
-
-
 Diary
-diary = Diary.new
-diary.is_a (Diary) => [true]
+  #read_all (with no entries)
+    diary = Diary.new
+    diary.read_all => raise_error "No entries have been added yet!"
 
-diary = Diary.new
-diary.read_all => [raise "no entries have been added"]
+  #read_best_entry (with no entries)
+    diary = Diary.new
+    diary.read_best_entry => raise_error "No entries have been added yet!"
 
-diary = Diary.new
-diary.read_best_entry => [raise "no entries have been added"]
+  #find_phone_numbers (with no entries)
+    diary = Diary.new
+    diary.find_phone_numbers => raise_error "No entries have been added yet!"
+
+
+DiaryEntry
+  #initialize
+    # 1 (empty string arguments)
+      entry = diaryEntry.new("", "") => [raise "not a valid entry"]
+
+    # 2 (non-string arguments)
+      entry = diaryEntry.new(4, nil) => [raise "not a valid entry"]
+
+
+TodoList
+  #incomplete (no entries)
+    todo_list = TodoList.new
+    todo_list.incomplete => raise_error "No todos have been added yet!"
+
+  #complete (no entries)
+    todo_list = TodoList.new
+    todo_list.complete => raise_error "No todos have been completed yet!"
+
+Todo
+  #initialize
+    # 1 (empty strings)
+      todo = Todo.new("") => raise_error "Please enter a task"
+
+    # 2 (non-string argument)
+      todo = Todo.new(5) => raise_error "Please enter a task"
+
+  #mark_done!
+    # 1 (mark a task as done)
+      todo = Todo.new("Buy groceries")
+      todo.mark_done! => "Todo marked as done"
+
+
+PhoneNumbers
+  #see_numbers
+    # 1 (with no numbers added)
+      numbers_list = PhoneNumbers.new
+      numbers_list.see_numbers => "No numbers have been added yet!"
+
 
 
 5. Implement the Behaviour
