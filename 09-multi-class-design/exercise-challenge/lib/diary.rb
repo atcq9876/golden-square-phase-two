@@ -12,6 +12,7 @@ class Diary
   end
 
   def read_best_entry(wpm, minutes) # returns longest entry user can read given wpm and minutes
+    raise "Invalid reading speed!" if wpm <= 0
     raise "No entries have been added yet!" if @diary.empty?
     words_user_can_read = wpm * minutes
     best_entry = ""

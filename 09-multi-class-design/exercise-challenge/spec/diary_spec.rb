@@ -16,6 +16,13 @@ describe "#read_best_entry" do
       expect{diary.read_best_entry(2, 1)}.to raise_error "No entries have been added yet!"
     end
   end
+
+  context "when reading speed <= 0 wpm" do
+    it "fails" do
+      diary = Diary.new
+      expect{diary.read_best_entry(0, 1)}.to raise_error "Invalid reading speed!"
+    end
+  end
 end
 
 describe "#find_phone_numbers" do
