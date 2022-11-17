@@ -3,21 +3,21 @@ RECORD THIS CHALLENGE
 1. Describe the Problem
 - Put or write the user story here. Add any clarifying notes you might have.
 
-# 1
+# 1 (DONE)
 As a user
 So that I can record my experiences
 I want to keep a regular diary
     # Diary class (create a diary; add instances of DiaryEntry to diary)
     # DiaryEntry class (create diary entries)
 
-# 2
+# 2 (DONE)
 As a user
 So that I can reflect on my experiences
 I want to read my past diary entries
     # in Diary class: some kind of return method, e.g., to return all entries?
 
 # 3
-As a user
+As a user (DONE)
 So that I can reflect on my experiences in my busy day
 I want to select diary entries to read based on how much time I have and my reading speed
     # in Diary class?: method like #best_entry to work out longest entry to read in given time with given reading speed (wpm)
@@ -84,7 +84,7 @@ class DiaryEntry
 end
 
 
-class ToDoList
+class TodoList
   def initialize # creates empty array for todo list
     ...
   end
@@ -103,7 +103,7 @@ class ToDoList
 end
 
 
-class ToDo
+class Todo
   def initialize(task) # creates a todo (takes string)
     ...
   end
@@ -175,7 +175,7 @@ TodoList (and Todo)
     todo_list = TodoList.new
     todo_list.add(todo_1)
     todo_list.add(todo_2)
-    todo.incomplete => [todo_1, todo_2]
+    todo_list.incomplete => [todo_1, todo_2]
 
     # 2 (one incomplete and one complete task)
     todo_1 = Todo.new("Buy groceries")
@@ -184,7 +184,7 @@ TodoList (and Todo)
     todo_list.add(todo_1)
     todo_list.add(todo_2)
     todo_1.mark_done!
-    todo.incomplete => [todo_2]
+    todo_list.incomplete => [todo_2]
 
     # 3 (two complete tasks)
     todo_1 = Todo.new("Buy groceries")
@@ -194,7 +194,7 @@ TodoList (and Todo)
     todo_list.add(todo_2)
     todo_1.mark_done!
     todo_2.mark_done!
-    todo.incomplete => raise_error "No todos to complete!"
+    todo_list.incomplete => raise_error "No todos to complete!"
 
   #complete (and #add(task) and #mark_done!)
     # 1 (two complete tasks)
@@ -205,7 +205,7 @@ TodoList (and Todo)
     todo_list.add(todo_2)
     todo_1.mark_done!
     todo_2.mark_done!
-    todo.complete => [todo_1, todo_2]
+    todo_list.complete => [todo_1, todo_2]
 
     # 2 (one incomplete and one complete task)
     todo_1 = Todo.new("Buy groceries")
@@ -214,7 +214,7 @@ TodoList (and Todo)
     todo_list.add(todo_1)
     todo_list.add(todo_2)
     todo_1.mark_done!
-    todo.complete => [todo_2]
+    todo_list.complete => [todo_1]
 
     # 3 (two incomplete tasks)
     todo_1 = Todo.new("Buy groceries")
@@ -222,7 +222,7 @@ TodoList (and Todo)
     todo_list = TodoList.new
     todo_list.add(todo_1)
     todo_list.add(todo_2)
-    todo.complete => raise_error "No complete todos!"
+    todo_list.complete => raise_error "No complete todos!"
 
 
 PhoneNumbers
@@ -320,10 +320,6 @@ Todo
     # 2 (non-string argument)
       todo = Todo.new(5) => raise_error "Please enter a task"
 
-  #mark_done!
-    # 1 (mark a task as done)
-      todo = Todo.new("Buy groceries")
-      todo.mark_done! => "Todo marked as done"
 
 
 PhoneNumbers
